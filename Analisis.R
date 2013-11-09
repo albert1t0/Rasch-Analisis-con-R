@@ -28,6 +28,14 @@ s4f3<-read.csv("./DATA/S4-F3.csv", header=TRUE, sep=",", as.is=TRUE)
 s4f4<-read.csv("./DATA/S4-F4.csv", header=TRUE, sep=",", as.is=TRUE)
 s4f5<-read.csv("./DATA/S4-F5.csv", header=TRUE, sep=",", as.is=TRUE)
 
+# Claves
+
+s1clave <- read.csv("./DATA/s1clave.csv", header=TRUE, sep=",", as.is=TRUE)
+s2clave <- read.csv("./DATA/s2clave.csv", header=TRUE, sep=",", as.is=TRUE)
+s3clave <- read.csv("./DATA/s3clave.csv", header=TRUE, sep=",", as.is=TRUE)
+s4clave <- read.csv("./DATA/s4clave.csv", header=TRUE, sep=",", as.is=TRUE)
+
+
 ########### Combinar formas para análsis completo por áreas ##########
 
 # Comprensión de textos
