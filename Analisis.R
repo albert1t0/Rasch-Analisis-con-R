@@ -32,4 +32,29 @@ s4f3<-read.csv("./DATA/S4-F3.csv", header=TRUE, sep=",", as.is=TRUE)
 s4f4<-read.csv("./DATA/S4-F4.csv", header=TRUE, sep=",", as.is=TRUE)
 s4f5<-read.csv("./DATA/S4-F5.csv", header=TRUE, sep=",", as.is=TRUE)
 
+########### Combinar formas para análsis completo por áreas ##########
+
+# Comprensión de textos
+s1 <- merge(s1f1,s1f2, all.x=TRUE, all.y=TRUE)
+s1 <- merge(s1,s1f3, all.x=TRUE, all.y=TRUE)
+s1 <- merge(s1,s1f4, all.x=TRUE, all.y=TRUE)
+s1 <- merge(s1,s1f5, all.x=TRUE, all.y=TRUE)
+
+# Alfabetización Matemática
+s2 <- merge(s2f1,s2f2, all.x=TRUE, all.y=TRUE)
+s2 <- merge(s2,s2f3, all.x=TRUE, all.y=TRUE)
+s2 <- merge(s2,s2f4, all.x=TRUE, all.y=TRUE)
+s2 <- merge(s2,s2f5, all.x=TRUE, all.y=TRUE)
+
+# Desarrollo del estudiante
+s3 <- merge(s3f1,s3f2, all.x=TRUE, all.y=TRUE)
+s3 <- merge(s3,s3f3, all.x=TRUE, all.y=TRUE)
+s3 <- merge(s3,s3f4, all.x=TRUE, all.y=TRUE)
+s3 <- merge(s3,s3f5, all.x=TRUE, all.y=TRUE)
+
+# Enfoques pedagógicos
+s4 <- merge(s4f1,s4f2, all.x=TRUE, all.y=TRUE)
+s4 <- merge(s4,s4f3, all.x=TRUE, all.y=TRUE)
+s4 <- merge(s4,s4f4, all.x=TRUE, all.y=TRUE)
+s4 <- merge(s4,s4f5, all.x=TRUE, all.y=TRUE)
 
