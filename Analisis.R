@@ -1,39 +1,39 @@
 ##### Carga de datos ############
 
 # Forma 1
-s1f1<-read.csv("./DATA/S1-F1.csv", header=TRUE, sep=",", as.is=TRUE)
-s1f2<-read.csv("./DATA/S1-F2.csv", header=TRUE, sep=",", as.is=TRUE)
-s1f3<-read.csv("./DATA/S1-F3.csv", header=TRUE, sep=",", as.is=TRUE)
-s1f4<-read.csv("./DATA/S1-F4.csv", header=TRUE, sep=",", as.is=TRUE)
-s1f5<-read.csv("./DATA/S1-F5.csv", header=TRUE, sep=",", as.is=TRUE)
+s1f1<-read.csv("./DATA/S1-F1.csv", as.is=TRUE)
+s1f2<-read.csv("./DATA/S1-F2.csv", as.is=TRUE)
+s1f3<-read.csv("./DATA/S1-F3.csv", as.is=TRUE)
+s1f4<-read.csv("./DATA/S1-F4.csv", as.is=TRUE)
+s1f5<-read.csv("./DATA/S1-F5.csv", as.is=TRUE)
 
 # Forma 2
-s2f1<-read.csv("./DATA/S2-F1.csv", header=TRUE, sep=",", as.is=TRUE)
-s2f2<-read.csv("./DATA/S2-F2.csv", header=TRUE, sep=",", as.is=TRUE)
-s2f3<-read.csv("./DATA/S2-F3.csv", header=TRUE, sep=",", as.is=TRUE)
-s2f4<-read.csv("./DATA/S2-F4.csv", header=TRUE, sep=",", as.is=TRUE)
-s2f5<-read.csv("./DATA/S2-F5.csv", header=TRUE, sep=",", as.is=TRUE)
+s2f1<-read.csv("./DATA/S2-F1.csv", as.is=TRUE)
+s2f2<-read.csv("./DATA/S2-F2.csv", as.is=TRUE)
+s2f3<-read.csv("./DATA/S2-F3.csv", as.is=TRUE)
+s2f4<-read.csv("./DATA/S2-F4.csv", as.is=TRUE)
+s2f5<-read.csv("./DATA/S2-F5.csv", as.is=TRUE)
 
 # Forma 3
-s3f1<-read.csv("./DATA/S3-F1.csv", header=TRUE, sep=",", as.is=TRUE)
-s3f2<-read.csv("./DATA/S3-F2.csv", header=TRUE, sep=",", as.is=TRUE)
-s3f3<-read.csv("./DATA/S3-F3.csv", header=TRUE, sep=",", as.is=TRUE)
-s3f4<-read.csv("./DATA/S3-F4.csv", header=TRUE, sep=",", as.is=TRUE)
-s3f5<-read.csv("./DATA/S3-F5.csv", header=TRUE, sep=",", as.is=TRUE)
+s3f1<-read.csv("./DATA/S3-F1.csv", as.is=TRUE)
+s3f2<-read.csv("./DATA/S3-F2.csv", as.is=TRUE)
+s3f3<-read.csv("./DATA/S3-F3.csv", as.is=TRUE)
+s3f4<-read.csv("./DATA/S3-F4.csv", as.is=TRUE)
+s3f5<-read.csv("./DATA/S3-F5.csv", as.is=TRUE)
 
 # Forma 4
-s4f1<-read.csv("./DATA/S4-F1.csv", header=TRUE, sep=",", as.is=TRUE)
-s4f2<-read.csv("./DATA/S4-F2.csv", header=TRUE, sep=",", as.is=TRUE)
-s4f3<-read.csv("./DATA/S4-F3.csv", header=TRUE, sep=",", as.is=TRUE)
-s4f4<-read.csv("./DATA/S4-F4.csv", header=TRUE, sep=",", as.is=TRUE)
-s4f5<-read.csv("./DATA/S4-F5.csv", header=TRUE, sep=",", as.is=TRUE)
+s4f1<-read.csv("./DATA/S4-F1.csv", as.is=TRUE)
+s4f2<-read.csv("./DATA/S4-F2.csv", as.is=TRUE)
+s4f3<-read.csv("./DATA/S4-F3.csv", as.is=TRUE)
+s4f4<-read.csv("./DATA/S4-F4.csv", as.is=TRUE)
+s4f5<-read.csv("./DATA/S4-F5.csv", as.is=TRUE)
 
 # Claves
 
-s1clave <- read.csv("./DATA/s1clave.csv", header=TRUE, sep=",", as.is=TRUE)
-s2clave <- read.csv("./DATA/s2clave.csv", header=TRUE, sep=",", as.is=TRUE)
-s3clave <- read.csv("./DATA/s3clave.csv", header=TRUE, sep=",", as.is=TRUE)
-s4clave <- read.csv("./DATA/s4clave.csv", header=TRUE, sep=",", as.is=TRUE)
+s1clave <- read.csv("./DATA/s1clave.csv", as.is=TRUE)
+s2clave <- read.csv("./DATA/s2clave.csv", as.is=TRUE)
+s3clave <- read.csv("./DATA/s3clave.csv", as.is=TRUE)
+s4clave <- read.csv("./DATA/s4clave.csv", as.is=TRUE)
 
 
 ########### Combinar formas para análsis completo por áreas ##########
@@ -131,7 +131,7 @@ distractor.analysis2 <- function (items, key = NA, scores = NA, p.table = FALSE,
 
 item.anal<-function(items, key = NA, name = NA)
 {
-  if(!is.na(name == NA )) {
+  if(!is.na(name == "NA" )) {
     name1<-paste(name,"_cnt.csv",sep="")
     name2<-paste(name,"_prop.csv",sep="")
     name3<-paste(name,"_itm.csv",sep="")
@@ -154,4 +154,37 @@ item.anal<-function(items, key = NA, name = NA)
   out
 }
 
+####### Análisis Clásico de Comprensión de textos ######
+
+cla.s1f1 <- item.anal(s1f1[,4:43],s1clave[1,2:41],name="s1f1")
+cla.s1f2 <- item.anal(s1f2[,4:43],s1clave[2,2:41],name="s1f2")
+cla.s1f3 <- item.anal(s1f3[,4:43],s1clave[3,2:41],name="s1f3")
+cla.s1f4 <- item.anal(s1f4[,4:43],s1clave[4,2:41],name="s1f4")
+cla.s1f5 <- item.anal(s1f5[,4:43],s1clave[5,2:41],name="s1f5")
+
+
+####### Análisis Clásico de Alfabetización Matemática ######  CLAVES INCOMPLETAS !!!!
+
+cla.s2f1 <- item.anal(s2f1[,4:43],s2clave[1,2:41],name="s2f1")
+cla.s2f2 <- item.anal(s2f2[,4:43],s2clave[2,2:41],name="s2f2")
+cla.s2f3 <- item.anal(s2f3[,4:43],s2clave[3,2:41],name="s2f3")
+cla.s2f4 <- item.anal(s2f4[,4:43],s2clave[4,2:41],name="s2f4")
+cla.s2f5 <- item.anal(s2f5[,4:43],s2clave[5,2:41],name="s2f5")
+
+
+####### Análisis Clásico Desarrollo del estudiante ########
+
+cla.s3f1 <- item.anal(s3f1[,4:43],s3clave[1,2:41],name="s3f1")
+cla.s3f2 <- item.anal(s3f2[,4:43],s3clave[2,2:41],name="s3f2")
+cla.s3f3 <- item.anal(s3f3[,4:43],s3clave[3,2:41],name="s3f3")
+cla.s3f4 <- item.anal(s3f4[,4:43],s3clave[4,2:41],name="s3f4")
+cla.s3f5 <- item.anal(s3f5[,4:43],s3clave[5,2:41],name="s3f5")
+
+###### Análisis Clásico Enfoques pedagógicos #############
+
+cla.s4f1 <- item.anal(s4f1[,4:42],s4clave[1,2:40],name="s4f1")
+cla.s4f2 <- item.anal(s4f2[,4:41],s4clave[2,2:39],name="s4f2")
+cla.s4f3 <- item.anal(s4f3[,4:42],s4clave[3,2:40],name="s4f3")
+cla.s4f4 <- item.anal(s4f4[,4:42],s4clave[4,2:40],name="s4f4")
+cla.s4f5 <- item.anal(s4f5[,4:42],s4clave[5,2:40],name="s4f5")
 
