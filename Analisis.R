@@ -154,6 +154,9 @@ item.anal<-function(items, key = NA, name = NA)
   out
 }
 
+##### Funciones adaptadas para Análisis de Rasch ##############
+
+
 ####### Análisis Clásico de Comprensión de textos ######
 
 cla.s1f1 <- item.anal(s1f1[,4:43],s1clave[1,2:41],name="s1f1")
