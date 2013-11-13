@@ -1,27 +1,27 @@
 ##### Carga de datos ############
 
-# Forma 1
+# Sub prueba 1
 s1f1<-read.csv("./DATA/S1-F1.csv", as.is=TRUE)
 s1f2<-read.csv("./DATA/S1-F2.csv", as.is=TRUE)
 s1f3<-read.csv("./DATA/S1-F3.csv", as.is=TRUE)
 s1f4<-read.csv("./DATA/S1-F4.csv", as.is=TRUE)
 s1f5<-read.csv("./DATA/S1-F5.csv", as.is=TRUE)
 
-# Forma 2
+# Sub prueba 2
 s2f1<-read.csv("./DATA/S2-F1.csv", as.is=TRUE)
 s2f2<-read.csv("./DATA/S2-F2.csv", as.is=TRUE)
 s2f3<-read.csv("./DATA/S2-F3.csv", as.is=TRUE)
 s2f4<-read.csv("./DATA/S2-F4.csv", as.is=TRUE)
 s2f5<-read.csv("./DATA/S2-F5.csv", as.is=TRUE)
 
-# Forma 3
+# Sub prueba 3
 s3f1<-read.csv("./DATA/S3-F1.csv", as.is=TRUE)
 s3f2<-read.csv("./DATA/S3-F2.csv", as.is=TRUE)
 s3f3<-read.csv("./DATA/S3-F3.csv", as.is=TRUE)
 s3f4<-read.csv("./DATA/S3-F4.csv", as.is=TRUE)
 s3f5<-read.csv("./DATA/S3-F5.csv", as.is=TRUE)
 
-# Forma 4
+# Sub prueba 4
 s4f1<-read.csv("./DATA/S4-F1.csv", as.is=TRUE)
 s4f2<-read.csv("./DATA/S4-F2.csv", as.is=TRUE)
 s4f3<-read.csv("./DATA/S4-F3.csv", as.is=TRUE)
@@ -36,31 +36,6 @@ s3clave <- read.csv("./DATA/s3clave.csv", as.is=TRUE)
 s4clave <- read.csv("./DATA/s4clave.csv", as.is=TRUE)
 
 
-########### Combinar formas para análsis completo por áreas ##########
-
-# Comprensión de textos
-s1 <- merge(s1f1,s1f2, all.x=TRUE, all.y=TRUE)
-s1 <- merge(s1,s1f3, all.x=TRUE, all.y=TRUE)
-s1 <- merge(s1,s1f4, all.x=TRUE, all.y=TRUE)
-s1 <- merge(s1,s1f5, all.x=TRUE, all.y=TRUE)
-
-# Alfabetización Matemática
-s2 <- merge(s2f1,s2f2, all.x=TRUE, all.y=TRUE)
-s2 <- merge(s2,s2f3, all.x=TRUE, all.y=TRUE)
-s2 <- merge(s2,s2f4, all.x=TRUE, all.y=TRUE)
-s2 <- merge(s2,s2f5, all.x=TRUE, all.y=TRUE)
-
-# Desarrollo del estudiante
-s3 <- merge(s3f1,s3f2, all.x=TRUE, all.y=TRUE)
-s3 <- merge(s3,s3f3, all.x=TRUE, all.y=TRUE)
-s3 <- merge(s3,s3f4, all.x=TRUE, all.y=TRUE)
-s3 <- merge(s3,s3f5, all.x=TRUE, all.y=TRUE)
-
-# Enfoques pedagógicos
-s4 <- merge(s4f1,s4f2, all.x=TRUE, all.y=TRUE)
-s4 <- merge(s4,s4f3, all.x=TRUE, all.y=TRUE)
-s4 <- merge(s4,s4f4, all.x=TRUE, all.y=TRUE)
-s4 <- merge(s4,s4f5, all.x=TRUE, all.y=TRUE)
 
 ##### Paquetes a utilizar ######
 
@@ -190,4 +165,59 @@ cla.s4f2 <- item.anal(s4f2[,4:41],s4clave[2,2:39],name="s4f2")
 cla.s4f3 <- item.anal(s4f3[,4:42],s4clave[3,2:40],name="s4f3")
 cla.s4f4 <- item.anal(s4f4[,4:42],s4clave[4,2:40],name="s4f4")
 cla.s4f5 <- item.anal(s4f5[,4:42],s4clave[5,2:40],name="s4f5")
+
+##### Preparación Análisis de Rasch ##############
+
+########### Combinar formas para análsis completo por áreas ##########
+
+# Comprensión de textos
+s1 <- merge(s1f1,s1f2, all.x=TRUE, all.y=TRUE)
+s1 <- merge(s1,s1f3, all.x=TRUE, all.y=TRUE)
+s1 <- merge(s1,s1f4, all.x=TRUE, all.y=TRUE)
+s1 <- merge(s1,s1f5, all.x=TRUE, all.y=TRUE)
+
+# Alfabetización Matemática
+s2 <- merge(s2f1,s2f2, all.x=TRUE, all.y=TRUE)
+s2 <- merge(s2,s2f3, all.x=TRUE, all.y=TRUE)
+s2 <- merge(s2,s2f4, all.x=TRUE, all.y=TRUE)
+s2 <- merge(s2,s2f5, all.x=TRUE, all.y=TRUE)
+
+# Desarrollo del estudiante
+s3 <- merge(s3f1,s3f2, all.x=TRUE, all.y=TRUE)
+s3 <- merge(s3,s3f3, all.x=TRUE, all.y=TRUE)
+s3 <- merge(s3,s3f4, all.x=TRUE, all.y=TRUE)
+s3 <- merge(s3,s3f5, all.x=TRUE, all.y=TRUE)
+
+# Enfoques pedagógicos
+s4 <- merge(s4f1,s4f2, all.x=TRUE, all.y=TRUE)
+s4 <- merge(s4,s4f3, all.x=TRUE, all.y=TRUE)
+s4 <- merge(s4,s4f4, all.x=TRUE, all.y=TRUE)
+s4 <- merge(s4,s4f5, all.x=TRUE, all.y=TRUE)
+
+### Etiquetas para elborar las claves ####
+
+write.table(names(s1),"s1-labels.csv", sep=",")
+write.table(names(s2),"s2-labels.csv", sep=",")
+write.table(names(s3),"s3-labels.csv", sep=",")
+write.table(names(s4),"s4-labels.csv", sep=",")
+
+###### Claves por sección #######
+
+clave.s1 <- c("C","A","B","A","C","D","A","D","C","B","B","C","B","C","D","D","D","D","A","A","A","D","C","C","D","C","A","D","B","C","C","C","A","C","B","C","D","A","D","B","C","D","C","A","D","C","A","D","B","B","A","B","A","B","D","D","A","C","B","C","B","D","C","C","A","C","D","A","A","B","C","A","D","A","B","C","D","B","A","B","C","B","B","B","D","C","A","D","B","A","D","D","A","C","B","D","A","C","D","B")
+clave.s2 <- c("C","B","A","D","C","C","C","A","D","B","A","A","A","C","C","C","D","A","A","D","D","B","D","C","C","D","A","A","B","B","A","B","C","D","B","B","B","A","A","C","A","B","C","C","A","C","C","A","C","B","B","A","C","A","A","B","B","E","C","C","B","D","B","A","B","D","D","D","A","C","D","A","D","B","D","E","C","D","D","D","B","A","A","A","A","B","C","B","D","D","A","B","B","C","B","B","B","B","B","D")
+clave.s3 <- c("C","C","A","D","D","B","D","A","C","B","A","C","C","D","B","A","B","B","D","A","C","D","C","B","A","A","D","C","B","D","D","A","C","A","C","B","B","D","D","A","D","A","A","D","C","C","A","D","B","B","A","B","D","A","C","D","A","B","B","C","C","A","C","B","D","B","A","D","C","D","A","B","C","A","A","D","B","B","D","C","B","D","C","A","D","B","C","A","C","D","C","B","B","A","D","C","A","A","D","B")
+clave.s4 <- c("B","C","C","A","C","D","C","D","B","C","B","C","C","B","A","A","C","D","C","B","B","B","C","C","D","A","A","C","B","B","A","D","C","D","A","B","B","B","C","B","D","D","B","C","D","B","A","A","C","B","A","B","D","C","B","D","D","C","B","A","C","D","D","B","B","A","B","A","B","B","B","A","B","A","A","C","B","C","D","D","C ","C","C","B","A","D","D","B","D","B","D","C","A","A","A","A","A")
+
+######### Calificar matrices con buenas y malas ############
+
+califica.s1 <- as.data.frame(score(s1[,4:103],clave.s1, output.scored = TRUE))
+califica.s2 <- as.data.frame(score(s2[,4:103],clave.s2, output.scored = TRUE))
+califica.s3 <- as.data.frame(score(s3[,4:103],clave.s3, output.scored = TRUE))
+califica.s4 <- as.data.frame(score(s4[,4:100],clave.s4, output.scored = TRUE))
+
+rasch.s1 <- RM(califica.s1[,2:101], se=TRUE, sum0 = TRUE)
+rasch.s2 <- RM(califica.s2[,2:101], se=TRUE, sum0 = TRUE)
+rasch.s3 <- RM(califica.s3[,2:101], se=TRUE, sum0 = TRUE)
+rasch.s4 <- RM(califica.s4[,2:98], se=TRUE, sum0 = TRUE)
+
 
