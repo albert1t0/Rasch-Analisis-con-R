@@ -141,7 +141,7 @@ cla.s1f4 <- item.anal(s1f4[,4:43],s1clave[4,2:41],name="s1f4")
 cla.s1f5 <- item.anal(s1f5[,4:43],s1clave[5,2:41],name="s1f5")
 
 
-####### Análisis Clásico de Alfabetización Matemática ######  CLAVES INCOMPLETAS !!!!
+####### Análisis Clásico de Alfabetización Matemática ###### 
 
 cla.s2f1 <- item.anal(s2f1[,4:43],s2clave[1,2:41],name="s2f1")
 cla.s2f2 <- item.anal(s2f2[,4:43],s2clave[2,2:41],name="s2f2")
@@ -215,9 +215,77 @@ califica.s2 <- as.data.frame(score(s2[,4:103],clave.s2, output.scored = TRUE))
 califica.s3 <- as.data.frame(score(s3[,4:103],clave.s3, output.scored = TRUE))
 califica.s4 <- as.data.frame(score(s4[,4:100],clave.s4, output.scored = TRUE))
 
-rasch.s1 <- RM(califica.s1[,2:101], se=TRUE, sum0 = TRUE)
-rasch.s2 <- RM(califica.s2[,2:101], se=TRUE, sum0 = TRUE)
-rasch.s3 <- RM(califica.s3[,2:101], se=TRUE, sum0 = TRUE)
-rasch.s4 <- RM(califica.s4[,2:98], se=TRUE, sum0 = TRUE)
+names(califica.s1) <- substr(names(califica.s1),8,14)
+names(califica.s2) <- substr(names(califica.s2),8,14)
+names(califica.s3) <- substr(names(califica.s3),8,14)
+names(califica.s4) <- substr(names(califica.s4),8,14)
+
+### Ajuste de Rasch de las Matrices de respuestas #####
+
+rasch.s1 <- RM(califica.s1[,2:101], se= TRUE, sum0 = TRUE)
+rasch.s2 <- RM(califica.s2[,2:101], se= TRUE, sum0 = TRUE)
+rasch.s3 <- RM(califica.s3[,2:101], se= TRUE, sum0 = TRUE)
+rasch.s4 <- RM(califica.s4[,2:98], se= TRUE, sum0 = TRUE)
+
+person.s1 <- person.parameter(rasch.s1)
+person.s2 <- person.parameter(rasch.s2)
+person.s3 <- person.parameter(rasch.s3)
+person.s4 <- person.parameter(rasch.s4)
+
+### Prueba de ajuste ####
+
+lrres.s1 <- LRtest(rasch.s1, splitcr = "mean", se = TRUE)
+lrres.s2 <- LRtest(rasch.s2, splitcr = "mean", se = TRUE)
+lrres.s3 <- LRtest(rasch.s3, splitcr = "mean", se = TRUE)
+lrres.s4 <- LRtest(rasch.s4, splitcr = "mean", se = TRUE)
+
+##### Gráficas de ajuste #########
+
+plotGOF(lrres.s1, ctrline = list(gamma = 0.95, col = "red", lty = "dashed"), main = "Ajuste - Comprensión de textos", cex = .5, xlab = "Grupo 1 - Bajo el promedio", ylab = "Grupo 2 - Sobre el promedio")
+plotGOF(lrres.s2, ctrline = list(gamma = 0.95, col = "red", lty = "dashed"), main = "Ajuste - Alfabetización Matemática", cex = .5, xlab = "Grupo 1 - Bajo el promedio", ylab = "Grupo 2 - Sobre el promedio")
+plotGOF(lrres.s3, ctrline = list(gamma = 0.95, col = "red", lty = "dashed"), main = "Ajuste - Desarrollo del estudiante", cex = .5, xlab = "Grupo 1 - Bajo el promedio", ylab = "Grupo 2 - Sobre el promedio")
+plotGOF(lrres.s4, ctrline = list(gamma = 0.95, col = "red", lty = "dashed"), main = "Ajuste - Enfoques pedagógicos", cex = .5, xlab = "Grupo 1 - Bajo el promedio", ylab = "Grupo 2 - Sobre el promedio")
+
+# Para el primer grupo por colores
+library(colorspace)
+colors <- rainbow_hcl(20)
+
+plotGOF(lrres.s1, beta.subset = 1:20, conf = list(which = 1:20, col = colors), main = "Gráfico de Ajuste S1", cex = .7, xlab = "Grupo 1 - Bajo el promedio", ylab = "Grupo 2 - Sobre el promedio")
+plotGOF(lrres.s2, beta.subset = 1:20, conf = list(which = 1:20, col = colors), main = "Gráfico de Ajuste S2", cex = .7, xlab = "Grupo 1 - Bajo el promedio", ylab = "Grupo 2 - Sobre el promedio")
+plotGOF(lrres.s3, beta.subset = 1:20, conf = list(which = 1:20, col = colors), main = "Gráfico de Ajuste S3", cex = .7, xlab = "Grupo 1 - Bajo el promedio", ylab = "Grupo 2 - Sobre el promedio")
+plotGOF(lrres.s4, beta.subset = 1:20, conf = list(which = 1:20, col = colors), main = "Gráfico de Ajuste S4", cex = .7, xlab = "Grupo 1 - Bajo el promedio", ylab = "Grupo 2 - Sobre el promedio")
+
+# Mapa de items
+
+plotPImap(rasch.s1, sorted = TRUE, cex.gen = .4, main = "Mapa de Ítemes S1", latdim = "Comprensión de textos" )
+plotPImap(rasch.s2, sorted = TRUE, cex.gen = .4, main = "Mapa de Ítemes S2", latdim = "Alfabetización Matemática" )
+plotPImap(rasch.s3, sorted = TRUE, cex.gen = .4, main = "Mapa de Ítemes S3", latdim = "Desarrollo del estudiante" )
+plotPImap(rasch.s4, sorted = TRUE, cex.gen = .4, main = "Mapa de Ítemes S4", latdim = "Enfoques pedagógicos" )
 
 
+
+########## GRabando tablas de ítemes análisis clásico ############
+
+write.table(cla.s1f1$Item,"Items-s1f1.csv",sep=",")
+write.table(cla.s1f2$Item,"Items-s1f2.csv",sep=",")
+write.table(cla.s1f3$Item,"Items-s1f3.csv",sep=",")
+write.table(cla.s1f4$Item,"Items-s1f4.csv",sep=",")
+write.table(cla.s1f5$Item,"Items-s1f5.csv",sep=",")
+
+write.table(cla.s2f1$Item,"Items-s2f1.csv",sep=",")
+write.table(cla.s2f2$Item,"Items-s2f2.csv",sep=",")
+write.table(cla.s2f3$Item,"Items-s2f3.csv",sep=",")
+write.table(cla.s2f4$Item,"Items-s2f4.csv",sep=",")
+write.table(cla.s2f5$Item,"Items-s2f5.csv",sep=",")
+
+write.table(cla.s3f1$Item,"Items-s3f1.csv",sep=",")
+write.table(cla.s3f2$Item,"Items-s3f2.csv",sep=",")
+write.table(cla.s3f3$Item,"Items-s3f3.csv",sep=",")
+write.table(cla.s3f4$Item,"Items-s3f4.csv",sep=",")
+write.table(cla.s3f5$Item,"Items-s3f5.csv",sep=",")
+
+write.table(cla.s4f1$Item,"Items-s4f1.csv",sep=",")
+write.table(cla.s4f2$Item,"Items-s4f2.csv",sep=",")
+write.table(cla.s4f3$Item,"Items-s4f3.csv",sep=",")
+write.table(cla.s4f4$Item,"Items-s4f4.csv",sep=",")
+write.table(cla.s1f5$Item,"Items-s1f5.csv",sep=",")
