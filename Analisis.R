@@ -262,6 +262,9 @@ plotPImap(rasch.s2, sorted = TRUE, cex.gen = .4, main = "Mapa de Ítemes S2", la
 plotPImap(rasch.s3, sorted = TRUE, cex.gen = .4, main = "Mapa de Ítemes S3", latdim = "Desarrollo del estudiante" )
 plotPImap(rasch.s4, sorted = TRUE, cex.gen = .4, main = "Mapa de Ítemes S4", latdim = "Enfoques pedagógicos" )
 
+# Curva de los ítemes
+
+plotICC(rasch.s1, ask = FALSE, empICC = list("raw"), empCI = list(lty = "solid"))
 
 
 ########## GRabando tablas de ítemes análisis clásico ############
