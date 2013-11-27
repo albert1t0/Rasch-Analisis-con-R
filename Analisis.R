@@ -267,7 +267,7 @@ plotPImap(rasch.s4, sorted = TRUE, cex.gen = .4, main = "Mapa de Ítemes S4", la
 plotICC(rasch.s1, ask = FALSE, empICC = list("raw"), empCI = list(lty = "solid"))
 
 
-########## GRabando tablas de ítemes análisis clásico ############
+########## Grabando tablas de ítemes análisis clásico ############
 
 write.table(cla.s1f1$Item,"Items-s1f1.csv",sep=",")
 write.table(cla.s1f2$Item,"Items-s1f2.csv",sep=",")
